@@ -1,0 +1,5 @@
+= Java HTTP Proxy
+
+Attempt to create HTTP Proxy compliant with https://tools.ietf.org/html/rfc7230[RFC 7230]
+
+
