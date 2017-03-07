@@ -1,7 +1,7 @@
 package com.github.rand0m86;
 
 import com.github.rand0m86.filters.CharacterEncodingFilter;
-import com.github.rand0m86.filters.HopByHopHeadersRemovalFilter;
+import com.github.rand0m86.filters.hop_by_hop.HopByHopHeadersRemovalFilter;
 import com.github.rand0m86.servlets.AsyncServlet;
 import com.github.rand0m86.servlets.DefaultProxyRequestBuilder;
 import com.github.rand0m86.servlets.DefaultProxyResponseBuilder;
@@ -15,10 +15,6 @@ import org.eclipse.jetty.servlet.ServletHolder;
 
 import javax.servlet.DispatcherType;
 import java.util.EnumSet;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 public class App {
     public static void main(String[] args) throws Exception {

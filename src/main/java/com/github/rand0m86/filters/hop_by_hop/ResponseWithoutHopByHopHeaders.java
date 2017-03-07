@@ -1,0 +1,39 @@
+package com.github.rand0m86.filters.hop_by_hop;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.stream.Collectors;
+
+import static com.github.rand0m86.filters.hop_by_hop.HopByHopHeaderUtil.isHopByHopHeader;
+
+class ResponseWithoutHopByHopHeaders extends HttpServletResponseWrapper {
+
+        ResponseWithoutHopByHopHeaders(HttpServletResponse response) {
+            super(response);
+        }
+
+        @Override
+        public String getHeader(String name) {
+            if (isHopByHopHeader(name)) {
+                return null;
+            }
+            return super.getHeader(name);
+        }
+
+        @Override
+        public Collection<String> getHeaderNames() {
+            return super.getHeaderNames().stream()
+                    .filter(header -> !isHopByHopHeader(header))
+                    .collect(Collectors.toList());
+        }
+
+        @Override
+        public Collection<String> getHeaders(String name) {
+            if (isHopByHopHeader(name)) {
+                return Collections.emptyList();
+            }
+            return super.getHeaders(name);
+        }
+    }
